@@ -70,18 +70,52 @@ function containsUpperCase(str) {
 }
 
 function containsNonAlphanumeric(str) {
+  // return containsDigit(str) === false && containsLowerCase(str) === false && containsUpperCase(str) === false && str !== '' 
+  // && str.includes('![a-zA-Z0-9]')
+  const upperC = 'QWERTYUIOPASDFGHJKLZXCVBNM';
+  const lowerC = 'qwertyuiopasdfghjklzxcvbnm';
+  const nums = '1234567890';
+  let spec = `'!@#$%^&*()_+=-<>,./;":|{}[]\` `
+  
+  if (str !== ''){
+  for (let i = 0; i < str.length; i++){
+//     if(spec.includes(str[i])){
+//       return true;
+//     }
+//   }
+//   return false
+// }
 
+    if(str[i] === ' ' && upperC.includes(str[i]) === false && lowerC.includes(str[i]) === false && nums.includes(str[i]) === false){
+      return true;
+    } else if (spec.includes(str[i]) || containsSpace(str[i])){
+      return true
+    }
+  }
+}
+return false
 }
 
 
 function digits(num) {
-  let newArr = [];
-  let numAsStr = toString(num);
-  // if (numAsStr.includes('-')){
-    for (i = 0; i < numAsStr.length; i++){
-      if (containsDigit(numAsStr[i])){
-        newArr.push(Number(numAsStr[i]));
+  let numAsStr = String(num);
+  const newArr = [];
+  let newStr = '';
+  let i = 0;
+  let ii = 0
+
+  while(i < numAsStr.length){
+    if (containsDigit(numAsStr[i])){
+      console.log(numAsStr[i]);
+      newStr += numAsStr[i]
+      i++;
+    } else {
+      i++;
     }
+  }
+  while(ii < newStr.length){
+    newArr.push(Number(newStr[ii]));
+    ii++;
   }
   return newArr;
 }
