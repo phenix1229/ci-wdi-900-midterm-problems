@@ -70,8 +70,6 @@ function containsUpperCase(str) {
 }
 
 function containsNonAlphanumeric(str) {
-  // return containsDigit(str) === false && containsLowerCase(str) === false && containsUpperCase(str) === false && str !== '' 
-  // && str.includes('![a-zA-Z0-9]')
   const upperC = 'QWERTYUIOPASDFGHJKLZXCVBNM';
   const lowerC = 'qwertyuiopasdfghjklzxcvbnm';
   const nums = '1234567890';
@@ -79,13 +77,6 @@ function containsNonAlphanumeric(str) {
   
   if (str !== ''){
   for (let i = 0; i < str.length; i++){
-//     if(spec.includes(str[i])){
-//       return true;
-//     }
-//   }
-//   return false
-// }
-
     if(str[i] === ' ' && upperC.includes(str[i]) === false && lowerC.includes(str[i]) === false && nums.includes(str[i]) === false){
       return true;
     } else if (spec.includes(str[i]) || containsSpace(str[i])){
@@ -129,7 +120,7 @@ function truncate(str) {
 }
 
 function isValidPassword(str) {
-  return 
+  return containsSpace(str) === false && containsUpperCase(str) && containsNonAlphanumeric(str) && containsLowerCase(str) && containsDigit(str);
 }
 
 function onlyPunchy(arr) {
